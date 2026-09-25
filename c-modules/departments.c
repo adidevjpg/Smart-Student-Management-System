@@ -1,0 +1,102 @@
+#include <stdio.h>
+#include <string.h>
+
+#define MAX_DEPARTMENTS 100
+
+// Departments table
+struct Department {
+    int department_id;
+    char department_name[100];
+    char department_code[20];
+    char created_at[30];
+};
+
+// Check if department code is unique
+int isUniqueCode(struct Department departments[], int count, char code[]) {
+    for (int i = 0; i < count; i++) {
+        if (strcmp(departments[i].department_code, code) == 0) {
+            return 0; // Not unique
+        }
+    }
+    return 1; // Unique
+}
+
+int main() {
+    struct Department departments[MAX_DEPARTMENTS];
+    int count = 0;
+    int choice;
+
+    while (1) {
+        printf("\n===== DEPARTMENTS TABLE =====\n");
+        printf("1. Add Department\n");
+        printf("2. Display Departments\n");
+        printf("3. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        if (choice == 1) {
+
+            if (count >= MAX_DEPARTMENTS) {
+                printf("Department limit reached!\n");
+                continue;
+            }
+
+            printf("\nEnter Department ID: ");
+            scanf("%d", &departments[count].department_id);
+
+            printf("Enter Department Name: ");
+            scanf(" %[^\n]", departments[count].department_name);
+
+            printf("Enter Department Code: ");
+            scanf("%s", departments[count].department_code);
+
+            // Check unique department code
+            if (!isUniqueCode(departments, count,
+                              departments[count].department_code)) {
+                printf("Error: Department code already exists!\n");
+                continue;
+            }
+
+            printf("Enter Created Date/Time: ");
+            scanf(" %[^\n]", departments[count].created_at);
+
+            count++;
+
+            printf("Department added successfully!\n");
+        }
+
+        else if (choice == 2) {
+
+            printf("\n========== DEPARTMENTS ==========\n");
+
+            if (count == 0) {
+                printf("No departments found.\n");
+            } else {
+                for (int i = 0; i < count; i++) {
+                    printf("\nDepartment ID   : %d",
+                           departments[i].department_id);
+
+                    printf("\nDepartment Name : %s",
+                           departments[i].department_name);
+
+                    printf("\nDepartment Code : %s",
+                           departments[i].department_code);
+
+                    printf("\nCreated At      : %s\n",
+                           departments[i].created_at);
+                }
+            }
+        }
+
+        else if (choice == 3) {
+            printf("Program ended.\n");
+            break;
+        }
+
+        else {
+            printf("Invalid choice!\n");
+        }
+    }
+
+    return 0;
+}
