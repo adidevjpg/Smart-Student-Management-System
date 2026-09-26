@@ -1,0 +1,58 @@
+#include <stdio.h>
+#include <string.h>
+
+#define MAX_MARKS 100
+
+struct Marks {
+    int mark_id;
+    int student_id;
+    int course_id;
+    float marks_obtained;
+    char exam_type[50];
+    char exam_date[20];
+};
+
+int main() {
+    struct Marks marks[MAX_MARKS];
+    int n, i;
+
+    printf("Enter number of marks records: ");
+    scanf("%d", &n);
+
+    for (i = 0; i < n; i++) {
+        printf("\nEnter details for Mark %d\n", i + 1);
+
+        printf("Mark ID: ");
+        scanf("%d", &marks[i].mark_id);
+
+        printf("Student ID: ");
+        scanf("%d", &marks[i].student_id);
+
+        printf("Course ID: ");
+        scanf("%d", &marks[i].course_id);
+
+        printf("Marks Obtained: ");
+        scanf("%f", &marks[i].marks_obtained);
+
+        printf("Exam Type: ");
+        scanf(" %[^\n]", marks[i].exam_type);
+
+        printf("Exam Date (DD-MM-YYYY): ");
+        scanf("%s", marks[i].exam_date);
+    }
+
+    printf("\n========== MARKS TABLE ==========\n");
+    printf("ID\tStudent\tCourse\tMarks\tExam Type\tDate\n");
+
+    for (i = 0; i < n; i++) {
+        printf("%d\t%d\t%d\t%.2f\t%s\t\t%s\n",
+               marks[i].mark_id,
+               marks[i].student_id,
+               marks[i].course_id,
+               marks[i].marks_obtained,
+               marks[i].exam_type,
+               marks[i].exam_date);
+    }
+
+    return 0;
+}
