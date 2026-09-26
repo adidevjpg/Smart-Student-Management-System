@@ -1,0 +1,355 @@
+#include <stdio.h>
+#include <string.h>
+
+#define MAX_STUDENTS 50
+#define MAX_COURSES 10
+#define MAX_CLASSES 100
+
+typedef struct {
+    int id;
+    char name[50];
+} Student;
+
+typedef struct {
+    int id;
+    char name[50];
+} Course;
+
+typedef struct {
+    int studentId;
+    int courseId;
+    int totalClasses;
+    int attendedClasses;
+    char status[MAX_CLASSES];   // P = Present, A = Absent
+} Attendance;
+
+/* Calculate attendance percentage */
+float calculatePercentage(int held, int attended) {
+    if (held == 0)
+        return 0.0;
+
+    return ((float)attended / held) * 100;
+}
+
+/* Find student */
+int findStudent(Student students[], int count, int id) {
+    for (int i = 0; i < count; i++) {
+        if (students[i].id == id)
+            return i;
+    }
+    return -1;
+}
+
+/* Find course */
+int findCourse(Course courses[], int count, int id) {
+    for (int i = 0; i < count; i++) {
+        if (courses[i].id == id)
+            return i;
+    }
+    return -1;
+}
+
+int main() {
+
+    Student students[MAX_STUDENTS] = {
+        {101, "Rahul"},
+        {102, "Amit"},
+        {103, "Priya"}
+    };
+
+    Course courses[MAX_COURSES] = {
+        {1, "C Programming"},
+        {2, "Data Structures"},
+        {3, "Mathematics"}
+    };
+
+    Attendance attendance[MAX_STUDENTS * MAX_COURSES];
+
+    int attendanceCount = 0;
+    int choice;
+
+    while (1) {
+
+        printf("\n====================================\n");
+        printf("       ATTENDANCE MANAGEMENT\n");
+        printf("====================================\n");
+        printf("1. Select Student & Course\n");
+        printf("2. Record Attendance\n");
+        printf("3. View Attendance\n");
+        printf("4. Calculate Attendance Percentage\n");
+        printf("5. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        /* -------------------------------- */
+        /* Select Student and Course */
+        /* -------------------------------- */
+
+        if (choice == 1) {
+
+            int studentId, courseId;
+
+            printf("\nStudents:\n");
+            for (int i = 0; i < 3; i++) {
+                printf("%d - %s\n",
+                       students[i].id,
+                       students[i].name);
+            }
+
+            printf("Enter Student ID: ");
+            scanf("%d", &studentId);
+
+            int studentIndex =
+                findStudent(students, 3, studentId);
+
+            if (studentIndex == -1) {
+                printf("Student not found!\n");
+                continue;
+            }
+
+            printf("\nCourses:\n");
+            for (int i = 0; i < 3; i++) {
+                printf("%d - %s\n",
+                       courses[i].id,
+                       courses[i].name);
+            }
+
+            printf("Enter Course ID: ");
+            scanf("%d", &courseId);
+
+            int courseIndex =
+                findCourse(courses, 3, courseId);
+
+            if (courseIndex == -1) {
+                printf("Course not found!\n");
+                continue;
+            }
+
+            printf("\nSelected Student: %s\n",
+                   students[studentIndex].name);
+
+            printf("Selected Course: %s\n",
+                   courses[courseIndex].name);
+        }
+
+        /* -------------------------------- */
+        /* Record Attendance */
+        /* -------------------------------- */
+
+        else if (choice == 2) {
+
+            int studentId, courseId;
+            char status;
+
+            printf("\nEnter Student ID: ");
+            scanf("%d", &studentId);
+
+            if (findStudent(students, 3, studentId) == -1) {
+                printf("Student not found!\n");
+                continue;
+            }
+
+            printf("Enter Course ID: ");
+            scanf("%d", &courseId);
+
+            if (findCourse(courses, 3, courseId) == -1) {
+                printf("Course not found!\n");
+                continue;
+            }
+
+            /*
+             * Find existing attendance record
+             */
+            int index = -1;
+
+            for (int i = 0; i < attendanceCount; i++) {
+                if (attendance[i].studentId == studentId &&
+                    attendance[i].courseId == courseId) {
+
+                    index = i;
+                    break;
+                }
+            }
+
+            /*
+             * Create new record if required
+             */
+            if (index == -1) {
+
+                index = attendanceCount;
+
+                attendance[index].studentId = studentId;
+                attendance[index].courseId = courseId;
+                attendance[index].totalClasses = 0;
+                attendance[index].attendedClasses = 0;
+
+                attendanceCount++;
+            }
+
+            if (attendance[index].totalClasses >= MAX_CLASSES) {
+                printf("Maximum class limit reached!\n");
+                continue;
+            }
+
+            printf("Enter attendance (P = Present, A = Absent): ");
+            scanf(" %c", &status);
+
+            if (status != 'P' && status != 'p' &&
+                status != 'A' && status != 'a') {
+
+                printf("Invalid attendance status!\n");
+                continue;
+            }
+
+            if (status == 'p')
+                status = 'P';
+
+            if (status == 'a')
+                status = 'A';
+
+            attendance[index]
+                .status[attendance[index].totalClasses] = status;
+
+            attendance[index].totalClasses++;
+
+            if (status == 'P')
+                attendance[index].attendedClasses++;
+
+            printf("Attendance recorded successfully!\n");
+        }
+
+        /* -------------------------------- */
+        /* View Attendance */
+        /* -------------------------------- */
+
+        else if (choice == 3) {
+
+            int studentId, courseId;
+
+            printf("\nEnter Student ID: ");
+            scanf("%d", &studentId);
+
+            printf("Enter Course ID: ");
+            scanf("%d", &courseId);
+
+            int studentIndex =
+                findStudent(students, 3, studentId);
+
+            int courseIndex =
+                findCourse(courses, 3, courseId);
+
+            if (studentIndex == -1 ||
+                courseIndex == -1) {
+
+                printf("Invalid Student ID or Course ID!\n");
+                continue;
+            }
+
+            int index = -1;
+
+            for (int i = 0; i < attendanceCount; i++) {
+
+                if (attendance[i].studentId == studentId &&
+                    attendance[i].courseId == courseId) {
+
+                    index = i;
+                    break;
+                }
+            }
+
+            if (index == -1) {
+                printf("\nNo attendance recorded yet.\n");
+                continue;
+            }
+
+            printf("\n====================================\n");
+            printf("Student ID      : %d\n", studentId);
+            printf("Student Name    : %s\n",
+                   students[studentIndex].name);
+            printf("Course          : %s\n",
+                   courses[courseIndex].name);
+            printf("Classes Held    : %d\n",
+                   attendance[index].totalClasses);
+            printf("Classes Attended: %d\n",
+                   attendance[index].attendedClasses);
+
+            printf("Attendance      : %.2f%%\n",
+                   calculatePercentage(
+                       attendance[index].totalClasses,
+                       attendance[index].attendedClasses));
+
+            printf("Status: ");
+
+            for (int i = 0;
+                 i < attendance[index].totalClasses;
+                 i++) {
+
+                printf("%c ", attendance[index].status[i]);
+            }
+
+            printf("\n====================================\n");
+        }
+
+        /* -------------------------------- */
+        /* Calculate Percentage */
+        /* -------------------------------- */
+
+        else if (choice == 4) {
+
+            int studentId, courseId;
+
+            printf("\nEnter Student ID: ");
+            scanf("%d", &studentId);
+
+            printf("Enter Course ID: ");
+            scanf("%d", &courseId);
+
+            int index = -1;
+
+            for (int i = 0; i < attendanceCount; i++) {
+
+                if (attendance[i].studentId == studentId &&
+                    attendance[i].courseId == courseId) {
+
+                    index = i;
+                    break;
+                }
+            }
+
+            if (index == -1) {
+                printf("\nNo attendance data found.\n");
+                continue;
+            }
+
+            float percentage =
+                calculatePercentage(
+                    attendance[index].totalClasses,
+                    attendance[index].attendedClasses
+                );
+
+            printf("\nStudent ID      : %d\n", studentId);
+            printf("Classes Held    : %d\n",
+                   attendance[index].totalClasses);
+            printf("Classes Attended: %d\n",
+                   attendance[index].attendedClasses);
+            printf("Attendance      : %.2f%%\n",
+                   percentage);
+        }
+
+        /* -------------------------------- */
+        /* Exit */
+        /* -------------------------------- */
+
+        else if (choice == 5) {
+
+            printf("\nProgram terminated.\n");
+            break;
+        }
+
+        else {
+            printf("\nInvalid choice!\n");
+        }
+    }
+
+    return 0;
+}
