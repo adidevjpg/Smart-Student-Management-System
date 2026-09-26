@@ -1,4 +1,3 @@
-Absolutely — below is a GitHub-ready SQL database design for the **Smart Student Academic Management & Analytics System**. It includes the 7 required tables, primary/foreign keys, relationships, indexes, and constraints.
 
 ```sql
 -- ============================================================
