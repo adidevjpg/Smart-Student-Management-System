@@ -1,23 +1,12 @@
 #include <stdio.h>
 #include <string.h>
+#include "auth.h"
 
-#define MAX_USERS 100
-
-// User structure
-struct User
-{
-    int userId;
-    char username[30];
-    char password[30];
-    char role[20];
-};
-
-struct User users[MAX_USERS];
-int userCount = 0;
+static User users[MAX_USERS];
+static int userCount = 0;
 
 // Function to create default users
-void createDefaultUsers()
-{
+void createDefaultUsers(void) {
     users[0].userId = 1;
     strcpy(users[0].username, "admin");
     strcpy(users[0].password, "admin123");
@@ -37,10 +26,8 @@ void createDefaultUsers()
 }
 
 // Function to add a new user
-void addUser()
-{
-    if (userCount >= MAX_USERS)
-    {
+void addUser(void) {
+    if (userCount >= MAX_USERS) {
         printf("User limit reached!\n");
         return;
     }
@@ -53,7 +40,7 @@ void addUser()
     printf("Enter Password: ");
     scanf("%29s", users[userCount].password);
 
-    printf("Enter Role: ");
+    printf("Enter Role (Admin/Student/Faculty): ");
     scanf("%19s", users[userCount].role);
 
     userCount++;
@@ -62,16 +49,12 @@ void addUser()
 }
 
 // Function to display all users
-void viewUsers()
-{
-    int i;
-
+void viewUsers(void) {
     printf("\n---------- USER LIST ----------\n");
     printf("%-10s %-20s %-20s %-15s\n",
            "User ID", "Username", "Password", "Role");
 
-    for (i = 0; i < userCount; i++)
-    {
+    for (int i = 0; i < userCount; i++) {
         printf("%-10d %-20s %-20s %-15s\n",
                users[i].userId,
                users[i].username,
@@ -81,86 +64,72 @@ void viewUsers()
 }
 
 // Login verification
-int login()
-{
+int login(void) {
     char username[30];
     char password[30];
-    int i;
 
     printf("\n========== LOGIN ==========\n");
-
     printf("Username: ");
     scanf("%29s", username);
 
     printf("Password: ");
     scanf("%29s", password);
 
-    for (i = 0; i < userCount; i++)
-    {
+    for (int i = 0; i < userCount; i++) {
         if (strcmp(username, users[i].username) == 0 &&
-            strcmp(password, users[i].password) == 0)
-        {
+            strcmp(password, users[i].password) == 0) {
             printf("\nLogin successful!\n");
             printf("Welcome, %s!\n", users[i].username);
             printf("Role: %s\n", users[i].role);
-
             return 1;
         }
     }
 
     printf("\nInvalid username or password!\n");
-
     return 0;
 }
 
-// Main function
-int main()
-{
+// Main function for authentication module
+int main(void) {
     int choice;
     int loginStatus;
 
     createDefaultUsers();
 
-    do
-    {
+    do {
         printf("\n===== USER MANAGEMENT =====\n");
         printf("1. Login\n");
         printf("2. Add User\n");
         printf("3. View Users\n");
         printf("4. Exit\n");
         printf("Enter your choice: ");
-        scanf("%d", &choice);
 
-        switch (choice)
-        {
+        if (scanf("%d", &choice) != 1) {
+            printf("Invalid input!\n");
+            int c;
+            while ((c = getchar()) != '\n' && c != EOF);
+            continue;
+        }
+
+        switch (choice) {
             case 1:
                 loginStatus = login();
-
-                if (loginStatus)
-                {
+                if (loginStatus) {
                     printf("\nAccess granted to Main Menu.\n");
-                    
-                    // Later Adrija/Aditya can connect
-                    // the actual Main Menu here.
                 }
                 break;
-
             case 2:
                 addUser();
                 break;
-
             case 3:
                 viewUsers();
                 break;
-
             case 4:
                 printf("\nExiting User Module...\n");
                 break;
-
             default:
                 printf("\nInvalid choice!\n");
         }
-
     } while (choice != 4);
 
     return 0;
