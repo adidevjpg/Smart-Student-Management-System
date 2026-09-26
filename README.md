@@ -24,34 +24,31 @@ The system is developed collaboratively using **GitHub**, with each team member 
 ```text
 Smart-Student-Management-System/
 │
-├── frontend/
-│   ├── index.html
-│   ├── css/
-│   └── js/
-│
 ├── backend/
-│   ├── authentication/
-│   ├── student/
-│   ├── attendance/
-│   └── results/
+│   └── src/
+│       └── model/
+│
+├── frontend/
 │
 ├── database/
-│   ├── schema/
-│   └── queries/
 │
 ├── c-modules/
-│   ├── attendance/
-│   ├── results/
-│   └── algorithms/
 │
 ├── python/
-│   ├── analytics/
-│   └── performance/
+│
+├── documentation/
+│
+├── screenshots/
 │
 ├── docs/
+│   └── ARCHITECTURE.md
 │
 └── README.md
 ```
+
+For a detailed explanation of the architecture, module responsibilities, communication flow, and integration strategy, see:
+
+[`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md)
 
 ---
 
@@ -146,23 +143,62 @@ Every team member is assigned a **specific programming module**. Members are exp
 
 ---
 
+## 🏗️ System Architecture
+
+The system follows a modular architecture in which each major component has a defined responsibility.
+
+```text
+                         ┌──────────────────┐
+                         │      USER        │
+                         └────────┬─────────┘
+                                  │
+                                  ▼
+                         ┌──────────────────┐
+                         │    FRONTEND      │
+                         │ HTML/CSS/JS      │
+                         └────────┬─────────┘
+                                  │
+                                  ▼
+                         ┌──────────────────┐
+                         │     BACKEND      │
+                         │ Application Logic│
+                         └───────┬──────────┘
+                                 │
+                    ┌────────────┼────────────┐
+                    │            │            │
+                    ▼            ▼            ▼
+             ┌───────────┐ ┌───────────┐ ┌───────────┐
+             │ DATABASE  │ │ C MODULES │ │  PYTHON   │
+             │   MySQL   │ │    C      │ │  Modules  │
+             └───────────┘ └───────────┘ └───────────┘
+```
+
+The **backend acts as the main integration layer**, coordinating communication between the frontend, database, and additional C/Python modules where required.
+
+Detailed architecture documentation is available in:
+
+[`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md)
+
+---
+
 ## 🌿 GitHub Workflow
 
-Each member should work on their **own branch**.
+Each member should work on their **own feature branch**.
 
 ```text
 main
 │
-├── feature/frontend
-├── feature/student
-├── feature/authentication
-├── feature/attendance
-├── feature/results
-├── feature/database
-├── feature/admin
-├── feature/analytics
-├── feature/c-modules
-└── feature/testing
+├── feature/database-design
+├── feature/students-table
+├── feature/departments-table
+├── feature/faculty-table
+├── feature/courses-table
+├── feature/attendance-table
+├── feature/marks-table
+├── feature/users-table
+├── feature/table-relationships
+├── feature/frontend-structure
+└── feature/project-architecture
 ```
 
 ### Recommended Workflow
@@ -181,6 +217,32 @@ git push origin feature/your-module
 
 After completing the module, create a **Pull Request** to `main`.
 
+### 🔄 Pull Request Process
+
+```text
+Feature Branch
+      │
+      ▼
+   Develop
+      │
+      ▼
+ Commit & Push
+      │
+      ▼
+ Pull Request
+      │
+      ▼
+ Code Review
+      │
+      ▼
+ Resolve Issues
+      │
+      ▼
+ Merge into main
+```
+
+The `main` branch is protected and should remain stable.
+
 ---
 
 ## 📌 Contribution Rules
@@ -192,6 +254,8 @@ After completing the module, create a **Pull Request** to `main`.
 * Do not push passwords, API keys, or other sensitive information.
 * Communicate before making major structural changes.
 * Keep the `main` branch stable.
+* Do not merge your own Pull Request without review.
+* Resolve integration conflicts before merging.
 
 ---
 
@@ -225,7 +289,7 @@ Possible future additions include:
 
 ---
 
-## ⭐ Project Status
+## 📊 Project Status
 
 **🚧 Currently in Development**
 
