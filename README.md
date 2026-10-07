@@ -27,22 +27,28 @@ Smart-Student-Management-System/
 ├── backend/
 │   └── src/
 │       └── model/
-│
-├── frontend/
-│
-├── database/
+│           └── Student.java
 │
 ├── c-modules/
+│   ├── attendance/       # Attendance tracking & percentage calculation
+│   ├── auth/             # User authentication and role management
+│   ├── courses/          # Course management system
+│   ├── departments/      # Department management and unique code validation
+│   ├── faculty/          # Faculty records management
+│   ├── integration/      # Unified college database simulation
+│   ├── marks/            # Marks, exams, and grade recording
+│   └── students/         # Student CRUD operations and file storage
 │
-├── python/
+├── database/
+│   └── database.sql      # Unified MySQL schema with 7 tables & sample data
 │
-├── documentation/
+├── frontend/
+│   ├── index.html        # Responsive college portal landing page
+│   ├── css/style.css     # CSS grid and mobile-friendly styling
+│   └── js/script.js      # Navbar toggle and dynamic year scripts
 │
-├── screenshots/
-│
-├── docs/
-│   └── ARCHITECTURE.md
-│
+├── python/               # Academic performance analytics
+├── docs/                 # Architectural specifications
 └── README.md
 ```
 
@@ -178,6 +184,56 @@ The **backend acts as the main integration layer**, coordinating communication b
 Detailed architecture documentation is available in:
 
 [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md)
+
+---
+
+## ⚙️ Building & Running Modules
+
+### C Modules
+
+Each C module is self-contained with its dedicated header (`.h`) and implementation (`.c`):
+
+```bash
+# Student Management Module
+gcc -Wall -Wextra c-modules/students/student.c c-modules/students/main.c -o student_module
+
+# Attendance Tracking Module
+gcc -Wall -Wextra c-modules/attendance/attendance.c -o attendance_module
+
+# Faculty Module
+gcc -Wall -Wextra c-modules/faculty/faculty.c -o faculty_module
+
+# Departments Module
+gcc -Wall -Wextra c-modules/departments/departments.c -o departments_module
+
+# Courses Management Module
+gcc -Wall -Wextra c-modules/courses/courses.c -o courses_module
+
+# Marks & Results Module
+gcc -Wall -Wextra c-modules/marks/marks.c -o marks_module
+
+# Authentication & User Module
+gcc -Wall -Wextra c-modules/auth/auth.c -o auth_module
+
+# Comprehensive College Database Integration CLI
+gcc -Wall -Wextra c-modules/integration/college_system.c -o college_system
+```
+
+### Database Setup
+
+Load the database schema and sample data into MySQL:
+
+```bash
+mysql -u root -p < database/database.sql
+```
+
+### Frontend
+
+Open `frontend/index.html` in any modern web browser or run a local HTTP server:
+
+```bash
+cd frontend && python -m http.server 8000
+```
 
 ---
 

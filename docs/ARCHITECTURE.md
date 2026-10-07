@@ -14,12 +14,25 @@ Smart-Student-Management-System/
 ├── backend/
 │   └── src/
 │       └── model/
-│
-├── frontend/
-│
-├── database/
+│           └── Student.java
 │
 ├── c-modules/
+│   ├── attendance/
+│   ├── auth/
+│   ├── courses/
+│   ├── departments/
+│   ├── faculty/
+│   ├── integration/
+│   ├── marks/
+│   └── students/
+│
+├── database/
+│   └── database.sql
+│
+├── frontend/
+│   ├── index.html
+│   ├── css/style.css
+│   └── js/script.js
 │
 ├── python/
 │
