@@ -11,12 +11,13 @@
 
 <header class="header">
     <div class="container nav-container">
-        <a href="#" class="logo">Smart Student Management</a>
+        <a href="#home" class="logo">🎓 Smart Student Management</a>
 
-        <button class="menu-btn" id="menuBtn">☰</button>
+        <button class="menu-btn" id="menuBtn" aria-label="Toggle navigation">☰</button>
 
         <nav class="nav" id="navMenu">
             <a href="#home">Home</a>
+            <a href="#modules">Modules</a>
             <a href="#students">Students</a>
             <a href="#faculty">Faculty</a>
             <a href="#courses">Courses</a>
@@ -27,98 +28,265 @@
 
 <main>
 
+    <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="container">
-            <p class="tag">COLLEGE MANAGEMENT SYSTEM</p>
-
+            <span class="tag">COLLEGE MINI-PROJECT</span>
             <h1>Smart Student Management System</h1>
-
             <p class="hero-text">
-                A simple interface for managing student, faculty,
-                course and attendance information.
+                A modular academic platform integrating C algorithms, Java application models, MySQL database relations, and responsive web interfaces built collaboratively.
             </p>
-
-            <a href="#modules" class="btn">Explore Modules</a>
-        </div>
-    </section>
-
-
-    <section id="modules" class="section">
-        <div class="container">
-
-            <h2>Management Modules</h2>
-
-            <p class="section-text">
-                Select a module to continue.
-            </p>
-
-            <div class="card-grid">
-
-                <a href="#students" class="card">
-                    <h3>Students</h3>
-                    <p>Manage student information and records.</p>
-                </a>
-
-                <a href="#faculty" class="card">
-                    <h3>Faculty</h3>
-                    <p>View and manage faculty information.</p>
-                </a>
-
-                <a href="#courses" class="card">
-                    <h3>Courses</h3>
-                    <p>Manage courses and academic details.</p>
-                </a>
-
-                <a href="#attendance" class="card">
-                    <h3>Attendance</h3>
-                    <p>View and manage attendance records.</p>
-                </a>
-
+            <div class="hero-btns">
+                <a href="#modules" class="btn">Explore Modules</a>
+                <a href="#students" class="btn btn-secondary">View Students</a>
             </div>
         </div>
     </section>
 
+    <!-- Module Showcase -->
+    <section id="modules" class="section">
+        <div class="container">
+            <h2>System Modules</h2>
+            <p class="section-text">
+                Built and maintained collaboratively across 8 core subsystems:
+            </p>
 
+            <div class="card-grid">
+                <a href="#students" class="card">
+                    <div class="card-icon">👨‍🎓</div>
+                    <h3>Student Module</h3>
+                    <p>CRUD operations with binary file persistence and duplicate ID checking.</p>
+                </a>
+
+                <a href="#faculty" class="card">
+                    <div class="card-icon">👩‍🏫</div>
+                    <h3>Faculty Module</h3>
+                    <p>Faculty member directories, designations, subject assignments, and lookups.</p>
+                </a>
+
+                <a href="#courses" class="card">
+                    <div class="card-icon">📚</div>
+                    <h3>Courses Module</h3>
+                    <p>Course codes, curriculum credit calculations, and department linking.</p>
+                </a>
+
+                <a href="#attendance" class="card">
+                    <div class="card-icon">📅</div>
+                    <h3>Attendance Module</h3>
+                    <p>Class session tracking, attendance percentage calculations, and shortage checks.</p>
+                </a>
+
+                <div class="card">
+                    <div class="card-icon">📊</div>
+                    <h3>Marks & Results</h3>
+                    <p>Exam score logging, semester result generation, and performance records.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">🏢</div>
+                    <h3>Departments</h3>
+                    <p>Academic branches, unique department codes, and relationship constraints.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">🔐</div>
+                    <h3>User Auth</h3>
+                    <p>Role-based access control for Admins, Faculty, and Students.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">🌐</div>
+                    <h3>Unified Database</h3>
+                    <p>Relational MySQL database schema with 7 interrelated tables.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Students Directory -->
     <section id="students" class="section section-light">
         <div class="container">
-            <h2>Students</h2>
-            <p>Student management section.</p>
+            <h2>Students Directory</h2>
+            <p class="section-text">Active enrolled student records managed by the system:</p>
+
+            <div class="table-responsive">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Student ID</th>
+                            <th>Roll Number</th>
+                            <th>Full Name</th>
+                            <th>Department</th>
+                            <th>Semester</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>101</td>
+                            <td>CSE2026001</td>
+                            <td><strong>Rahul Sharma</strong></td>
+                            <td>Computer Science (CSE)</td>
+                            <td>Semester 1</td>
+                            <td><span class="badge badge-success">Active</span></td>
+                        </tr>
+                        <tr>
+                            <td>102</td>
+                            <td>CSE2026002</td>
+                            <td><strong>Amit Verma</strong></td>
+                            <td>Computer Science (CSE)</td>
+                            <td>Semester 1</td>
+                            <td><span class="badge badge-success">Active</span></td>
+                        </tr>
+                        <tr>
+                            <td>103</td>
+                            <td>CSE2026003</td>
+                            <td><strong>Priya Singh</strong></td>
+                            <td>Computer Science (CSE)</td>
+                            <td>Semester 1</td>
+                            <td><span class="badge badge-success">Active</span></td>
+                        </tr>
+                        <tr>
+                            <td>104</td>
+                            <td>IT2026010</td>
+                            <td><strong>Neha Roy</strong></td>
+                            <td>Information Technology (IT)</td>
+                            <td>Semester 2</td>
+                            <td><span class="badge badge-success">Active</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </section>
 
-
+    <!-- Faculty Directory -->
     <section id="faculty" class="section">
         <div class="container">
-            <h2>Faculty</h2>
-            <p>Faculty management section.</p>
+            <h2>Faculty Members</h2>
+            <p class="section-text">Academic mentors and teaching faculty recorded in the database:</p>
+
+            <div class="faculty-grid">
+                <div class="faculty-card">
+                    <h4>Dr. Sunita Roy</h4>
+                    <div class="desig">Professor & Head of Department</div>
+                    <p><strong>Department:</strong> Computer Science</p>
+                    <p><strong>Subject:</strong> Data Structures & C</p>
+                    <p><strong>Email:</strong> sunita.roy@college.edu</p>
+                </div>
+
+                <div class="faculty-card">
+                    <h4>Prof. Arvind Menon</h4>
+                    <div class="desig">Associate Professor</div>
+                    <p><strong>Department:</strong> Computer Science</p>
+                    <p><strong>Subject:</strong> Database Systems</p>
+                    <p><strong>Email:</strong> arvind.menon@college.edu</p>
+                </div>
+
+                <div class="faculty-card">
+                    <h4>Dr. Rajesh Gupta</h4>
+                    <div class="desig">Assistant Professor</div>
+                    <p><strong>Department:</strong> Information Technology</p>
+                    <p><strong>Subject:</strong> Web Technologies</p>
+                    <p><strong>Email:</strong> rajesh.gupta@college.edu</p>
+                </div>
+            </div>
         </div>
     </section>
 
-
+    <!-- Courses Section -->
     <section id="courses" class="section section-light">
         <div class="container">
-            <h2>Courses</h2>
-            <p>Course management section.</p>
+            <h2>Offered Courses</h2>
+            <p class="section-text">Curriculum programs and academic credit allocations:</p>
+
+            <div class="table-responsive">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Course ID</th>
+                            <th>Course Code</th>
+                            <th>Course Name</th>
+                            <th>Department</th>
+                            <th>Semester</th>
+                            <th>Credits</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>CS101</td>
+                            <td>CSE101</td>
+                            <td>Intro to Programming in C</td>
+                            <td>CSE</td>
+                            <td>1</td>
+                            <td><span class="badge badge-info">4 Credits</span></td>
+                        </tr>
+                        <tr>
+                            <td>CS102</td>
+                            <td>CSE102</td>
+                            <td>Data Structures and Algorithms</td>
+                            <td>CSE</td>
+                            <td>2</td>
+                            <td><span class="badge badge-info">4 Credits</span></td>
+                        </tr>
+                        <tr>
+                            <td>CS103</td>
+                            <td>CSE103</td>
+                            <td>Database Management Systems</td>
+                            <td>CSE</td>
+                            <td>3</td>
+                            <td><span class="badge badge-info">3 Credits</span></td>
+                        </tr>
+                        <tr>
+                            <td>IT201</td>
+                            <td>IT201</td>
+                            <td>Web Systems & Frontend</td>
+                            <td>IT</td>
+                            <td>2</td>
+                            <td><span class="badge badge-info">3 Credits</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </section>
 
-
+    <!-- Attendance Overview -->
     <section id="attendance" class="section">
         <div class="container">
-            <h2>Attendance</h2>
-            <p>Attendance management section.</p>
+            <h2>Attendance & Analytics</h2>
+            <p class="section-text">Real-time attendance tracking and academic metrics overview:</p>
+
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-value">92.5%</div>
+                    <div class="metric-label">Average Attendance</div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-value">4</div>
+                    <div class="metric-label">Active Departments</div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-value">12</div>
+                    <div class="metric-label">Enrolled Courses</div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-value">100%</div>
+                    <div class="metric-label">Database Integrity</div>
+                </div>
+            </div>
         </div>
     </section>
 
 </main>
 
-
 <footer class="footer">
     <div class="container">
-        <p>
-            &copy; <span id="year"></span>
-            Smart Student Management System
-        </p>
+        <p><strong>Smart Student Management System</strong> — Collaborative College Project</p>
+        <p>&copy; <span id="year"></span> All rights reserved. Developed with C, Java, Python, MySQL, HTML, CSS & JavaScript.</p>
     </div>
 </footer>
 
