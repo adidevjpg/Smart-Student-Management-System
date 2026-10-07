@@ -1,5 +1,12 @@
 # 🎓 Smart Student Management System
 
+[![Live Demo](https://img.shields.io/badge/Live_Showcase-Visit_Portal-1f3c88?style=for-the-badge&logo=googlechrome&logoColor=white)](https://adidevjpg.github.io/Smart-Student-Management-System/)
+[![GitHub Pages](https://img.shields.io/badge/GitHub_Pages-Active-success?style=for-the-badge&logo=github)](https://adidevjpg.github.io/Smart-Student-Management-System/)
+[![Status](https://img.shields.io/badge/Build-Passing-brightgreen?style=for-the-badge)](https://github.com/adidevjpg/Smart-Student-Management-System)
+
+> 🌐 **Live Web Portal**: Explore the interactive student, faculty, and academic dashboard live in your browser:  
+> **👉 [https://adidevjpg.github.io/Smart-Student-Management-System/](https://adidevjpg.github.io/Smart-Student-Management-System/)**
+
 A comprehensive **Smart Student Management System** designed to simplify and automate student-related academic management. The project combines **C, Java, Python, MySQL, HTML, CSS, and JavaScript** to create a modular and practical student management platform.
 
 ## 🚀 Project Overview
