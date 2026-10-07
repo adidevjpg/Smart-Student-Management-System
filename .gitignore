@@ -1,0 +1,37 @@
+# Compiled Object and Executable files
+*.o
+*.obj
+*.exe
+*.out
+*.app
+
+# Dynamic and Data files generated during runtime
+*.dat
+*.log
+
+# Java build artifacts
+*.class
+*.jar
+*.war
+target/
+bin/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+env/
+venv/
+
+# IDE and Editor configurations
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+Thumbs.db
+desktop.ini
